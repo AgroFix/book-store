@@ -1,6 +1,5 @@
 package mate.academy.bookstore.model;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,4 +20,3 @@ public class Book {
     private String description;
     private String coverImage;
 }
-
