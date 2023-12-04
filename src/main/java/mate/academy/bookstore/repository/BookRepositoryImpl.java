@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public class BookRepositoryImpl implements BookRepository {
     private static final String CANT_SAVE_MSG = "Can't save book: ";
     private static final String CANT_GET_ALL_MSG = "Can't get all books!";
-    private static final String SELECT_ALL_QUERY = "SELECT a FROM Book a";
+    private static final String SELECT_ALL_QUERY = "SELECT b FROM Book b";
     private SessionFactory sessionFactory;
 
     @Autowired
