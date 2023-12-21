@@ -8,52 +8,52 @@ databaseChangeLog:
             columns:
               - column:
                   name: email
-                  value: user1@example.com
+                  value: william.turner@example.com
               - column:
                   name: password
-                  value: $2a$10$coPbc9lmHZ1R1Ryti1BRIeI3YaagihnDo5.g.ANbne9oL0B4mJkUa
+                  value: $2a$10$iUXPEAV80QNdHUl9F6aTruvMZj5.7i.tlzy39dG.JlDy.CWN7gZVa
               - column:
                   name: first_name
-                  value: John
+                  value: William
               - column:
                   name: last_name
-                  value: Doe
+                  value: Turner
               - column:
                   name: shipping_address
-                  value: 123 Main St, City1, Country1
+                  value: 123 Main St, Cityville, USA
         - insert:
             tableName: users
             columns:
               - column:
                   name: email
-                  value: user2@example.com
+                  value: olivia.thompson@example.com
               - column:
                   name: password
-                  value: $2a$10$coPbc9lmHZ1R1Ryti1BRIeI3YaagihnDo5.g.ANbne9oL0B4mJkUa
+                  value: $2a$10$iUXPEAV80QNdHUl9F6aTruvMZj5.7i.tlzy39dG.JlDy.CWN7gZVa
               - column:
                   name: first_name
-                  value: Jane
+                  value: Olivia
               - column:
                   name: last_name
-                  value: Doe
+                  value: Thompson
               - column:
                   name: shipping_address
-                  value: 456 Main St, City2, Country2
+                  value: 456 Oak St, Townsville, Canada
         - insert:
             tableName: users
             columns:
               - column:
                   name: email
-                  value: user3@example.com
+                  value: ethan.miller@example.com
               - column:
                   name: password
-                  value: $2a$10$coPbc9lmHZ1R1Ryti1BRIeI3YaagihnDo5.g.ANbne9oL0B4mJkUa
+                  value: $2a$10$iUXPEAV80QNdHUl9F6aTruvMZj5.7i.tlzy39dG.JlDy.CWN7gZVa
               - column:
                   name: first_name
-                  value: Alex
+                  value: Ethan
               - column:
                   name: last_name
-                  value: Smith
+                  value: Miller
               - column:
                   name: shipping_address
-                  value: 789 Main St, City3, Country3
+                  value: 789 Pine St, Villagetown, Australia
