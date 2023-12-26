@@ -6,10 +6,18 @@ databaseChangeLog:
         - insert:
             tableName: users_roles
             columns:
-              - column: {name: role_id, valueComputed: "1"}
-              - column: {name: user_id, valueComputed: "1"}
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email='william.turner@example.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name='USER')
         - insert:
             tableName: users_roles
             columns:
-              - column: { name: role_id, valueComputed: "2" }
-              - column: { name: user_id, valueComputed: "2" }
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email='olivia.thompson@example.com')
+              - column:
+                  name: role_id
+                  valueComputed: (SELECT id FROM roles WHERE name='ADMIN')
