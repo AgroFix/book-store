@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JwtUtil {
+    private static final String JWT_EXCEPTION_MSG = "Expired or invalid JWT token";
     private final SecretKey secret;
     @Value("${jwt.expiration}")
     private long expiration;
@@ -40,7 +41,7 @@ public class JwtUtil {
 
             return !claimsJws.getPayload().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException e) {
-            throw new JwtException("Expired or invalid JWT token");
+            throw new JwtException(JWT_EXCEPTION_MSG);
         }
     }
 
