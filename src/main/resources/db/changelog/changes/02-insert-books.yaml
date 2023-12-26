@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-books
+      author: AgroFix
+      changes:
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: title, value: "The Great Gatsby" }
+              - column: { name: author, value: "F. Scott Fitzgerald" }
+              - column: { name: isbn, value: "978-3-16-148410-0" }
+              - column: { name: price, value: "19.99" }
+              - column: { name: description, value: "A novel about the American Dream." }
+              - column: { name: cover_image, value: "gatsby.jpg" }
+        - insert:
+            tableName: books
+            columns:
+              - column: { name: title, value: "To Kill a Mockingbird" }
+              - column: { name: author, value: "Harper Lee" }
+              - column: { name: isbn, value: "978-0-06-112008-4" }
+              - column: { name: price, value: "24.99" }
+              - column: { name: description, value: "A classic of modern American literature." }
+              - column: { name: cover_image, value: "mockingbird.jpg" }
