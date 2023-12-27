@@ -2,6 +2,20 @@ databaseChangeLog:
   - changeSet:
       id: insert-users-roles
       author: AgroFix
+      preConditions:
+        - sqlCheck:
+            expectedResult: 1
+            sql: SELECT COUNT(*) FROM users WHERE email='olivia.thompson@example.com'
+        - sqlCheck:
+            expectedResult: 1
+            sql: SELECT COUNT(*) FROM roles WHERE name='ADMIN'
+        - sqlCheck:
+            expectedResult: 1
+            sql: SELECT COUNT(*) FROM users WHERE email='william.turner@example.com'
+        - sqlCheck:
+            expectedResult: 1
+            sql: SELECT COUNT(*) FROM roles WHERE name='USER'
+
       changes:
         - insert:
             tableName: users_roles
