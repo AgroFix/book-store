@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-users
+      author: AgroFix
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: william.turner@example.com
+              - column:
+                  name: password
+                  value: $2a$10$iUXPEAV80QNdHUl9F6aTruvMZj5.7i.tlzy39dG.JlDy.CWN7gZVa
+              - column:
+                  name: first_name
+                  value: William
+              - column:
+                  name: last_name
+                  value: Turner
+              - column:
+                  name: shipping_address
+                  value: 123 Main St, Cityville, USA
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: olivia.thompson@example.com
+              - column:
+                  name: password
+                  value: $2a$10$iUXPEAV80QNdHUl9F6aTruvMZj5.7i.tlzy39dG.JlDy.CWN7gZVa
+              - column:
+                  name: first_name
+                  value: Olivia
+              - column:
+                  name: last_name
+                  value: Thompson
+              - column:
+                  name: shipping_address
+                  value: 456 Oak St, Townsville, Canada
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: ethan.miller@example.com
+              - column:
+                  name: password
+                  value: $2a$10$iUXPEAV80QNdHUl9F6aTruvMZj5.7i.tlzy39dG.JlDy.CWN7gZVa
+              - column:
+                  name: first_name
+                  value: Ethan
+              - column:
+                  name: last_name
+                  value: Miller
+              - column:
+                  name: shipping_address
+                  value: 789 Pine St, Villagetown, Australia
