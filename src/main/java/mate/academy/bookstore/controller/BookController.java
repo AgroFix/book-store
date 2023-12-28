@@ -5,8 +5,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import mate.academy.bookstore.dto.book.BookDto;
-import mate.academy.bookstore.dto.book.CreateBookRequestDto;
+import mate.academy.bookstore.dto.book.BookRequestDto;
+import mate.academy.bookstore.dto.book.BookResponseDto;
 import mate.academy.bookstore.service.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -31,22 +31,22 @@ public class BookController {
     @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping
     @Operation(summary = "Get all books", description = "Get a list of all available books")
-    public List<BookDto> getAll(Pageable pageable) {
+    public List<BookResponseDto> getAll(Pageable pageable) {
         return bookService.getAll(pageable);
     }
 
     @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/{id}")
     @Operation(summary = "Get book by id", description = "Get book by id")
-    public BookDto getBookById(@PathVariable Long id) {
+    public BookResponseDto getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     @Operation(summary = "Create a new book", description = "Create a new book")
-    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto createBookRequestDto) {
-        return bookService.createBook(createBookRequestDto);
+    public BookResponseDto createBook(@RequestBody @Valid BookRequestDto bookRequestDto) {
+        return bookService.createBook(bookRequestDto);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -60,8 +60,8 @@ public class BookController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
     @Operation(summary = "Update existing book", description = "Update existing book")
-    public BookDto update(@PathVariable Long id,
-                          @RequestBody @Valid CreateBookRequestDto bookDto) {
+    public BookResponseDto update(@PathVariable Long id,
+                                  @RequestBody @Valid BookRequestDto bookDto) {
         return bookService.updateBookById(id, bookDto);
     }
 }
