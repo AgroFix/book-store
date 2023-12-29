@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: create-books-categories-table
+      id: create-books_categories-table
       author: AgroFix
       changes:
         - createTable:
