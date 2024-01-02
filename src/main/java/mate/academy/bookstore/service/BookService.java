@@ -1,18 +1,21 @@
 package mate.academy.bookstore.service;
 
 import java.util.List;
-import mate.academy.bookstore.dto.book.BookDto;
-import mate.academy.bookstore.dto.book.CreateBookRequestDto;
+import mate.academy.bookstore.dto.book.BookDtoWithoutCategoryIds;
+import mate.academy.bookstore.dto.book.BookRequestDto;
+import mate.academy.bookstore.dto.book.BookResponseDto;
 import org.springframework.data.domain.Pageable;
 
 public interface BookService {
-    BookDto createBook(CreateBookRequestDto createBookRequestDto);
+    BookResponseDto createBook(BookRequestDto bookRequestDto);
 
-    List<BookDto> getAll(Pageable pageable);
+    List<BookResponseDto> getAll(Pageable pageable);
 
-    BookDto getBookById(Long id);
+    BookResponseDto getBookById(Long id);
+
+    BookResponseDto updateBookById(Long id, BookRequestDto bookDto);
 
     void deleteBookById(Long id);
 
-    BookDto updateBookById(Long id, CreateBookRequestDto bookDto);
+    List<BookDtoWithoutCategoryIds> getBooksByCategoryId(Long id);
 }
