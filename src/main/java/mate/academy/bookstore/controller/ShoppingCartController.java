@@ -55,7 +55,7 @@ public class ShoppingCartController {
             Authentication authentication, @PathVariable Long id,
             @RequestBody @Valid UpdateCartItemRequestDto requestUpdateDto) {
         User user = (User) authentication.getPrincipal();
-        return shoppingCartService.updateShoppingCart(user.getId(), id,
+        return shoppingCartService.updateCartItem(user.getId(), id,
                 requestUpdateDto);
     }
 

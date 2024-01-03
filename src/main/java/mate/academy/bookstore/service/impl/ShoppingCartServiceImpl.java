@@ -14,6 +14,7 @@ import mate.academy.bookstore.repository.CartItemRepository;
 import mate.academy.bookstore.repository.ShoppingCartRepository;
 import mate.academy.bookstore.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,6 +35,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
+    @Transactional
     public ShoppingCartResponseDto addToShoppingCart(CartItemRequestDto requestDto, Long userId) {
         ShoppingCart shoppingCart = findByUserId(userId);
         CartItem cartItem = cartItemMapper.toModel(requestDto);
@@ -50,12 +52,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public ShoppingCartResponseDto updateShoppingCart(
-            Long userId, Long id, UpdateCartItemRequestDto requestUpdateDto) {
+    @Transactional
+    public ShoppingCartResponseDto updateCartItem(
+            Long userId, Long cartItemId, UpdateCartItemRequestDto requestUpdateDto) {
         ShoppingCart shoppingCart = findByUserId(userId);
-        CartItem cartItem = cartItemRepository.findByIdAndShoppingCartId(id,
+        CartItem cartItem = cartItemRepository.findByIdAndShoppingCartId(cartItemId,
                 shoppingCart.getId()).orElseThrow(
-                    () -> new EntityNotFoundException(UPDATE_ERROR_MSG + id)
+                    () -> new EntityNotFoundException(UPDATE_ERROR_MSG + cartItemId)
         );
         cartItem.setQuantity(requestUpdateDto.getQuantity());
         cartItemRepository.save(cartItem);

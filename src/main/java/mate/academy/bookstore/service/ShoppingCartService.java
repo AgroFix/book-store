@@ -13,8 +13,8 @@ public interface ShoppingCartService {
 
     ShoppingCartResponseDto getShoppingCart(Long userId);
 
-    ShoppingCartResponseDto updateShoppingCart(
-            Long userId, Long id, UpdateCartItemRequestDto requestUpdateDto);
+    ShoppingCartResponseDto updateCartItem(
+            Long userId, Long cartItemId, UpdateCartItemRequestDto requestUpdateDto);
 
     void deleteCartItem(Long id);
 
