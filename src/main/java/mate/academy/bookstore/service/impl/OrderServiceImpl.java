@@ -52,15 +52,11 @@ public class OrderServiceImpl implements OrderService {
         if (shoppingCart.getCartItems().isEmpty()) {
             throw new EntityNotFoundException(EMPTY_SHOPPING_CART_MSG);
         }
-        BigDecimal total = shoppingCart.getCartItems().stream()
-                .map(cartItem -> cartItem.getBook().getPrice()
-                        .multiply(BigDecimal.valueOf(cartItem.getQuantity())))
-                .reduce(BigDecimal.valueOf(0), BigDecimal::add);
+
+        BigDecimal total = calculateTotal(shoppingCart);
         Order savedOrder = orderRepository.save(newOrder(user, dto.getShippingAddress(), total));
-        List<OrderItem> orderItems = shoppingCart.getCartItems().stream()
-                .map(cartItem -> new OrderItem(savedOrder, cartItem.getBook(),
-                        cartItem.getQuantity(),cartItem.getBook().getPrice()))
-                .collect(Collectors.toList());
+        List<OrderItem> orderItems = createOrderItems(savedOrder, shoppingCart);
+
         orderItemRepository.saveAll(orderItems);
         savedOrder.setOrderItems(new HashSet<>(orderItems));
         cartItemRepository.deleteAll(shoppingCart.getCartItems());
@@ -68,6 +64,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public OrderResponseDto updateOrder(Long orderId, UpdateOrderRequestDto requestDto) {
         Order order = orderRepository.findById(orderId).orElseThrow(
                 () -> new EntityNotFoundException(CANT_FIND_ORDER_MSG + orderId)
@@ -75,6 +72,20 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(requestDto.getStatus());
         orderRepository.save(order);
         return orderMapper.toDto(order);
+    }
+
+    private BigDecimal calculateTotal(ShoppingCart shoppingCart) {
+        return shoppingCart.getCartItems().stream()
+                .map(cartItem -> cartItem.getBook().getPrice()
+                        .multiply(BigDecimal.valueOf(cartItem.getQuantity())))
+                .reduce(BigDecimal.valueOf(0), BigDecimal::add);
+    }
+
+    private List<OrderItem> createOrderItems(Order order, ShoppingCart shoppingCart) {
+        return shoppingCart.getCartItems().stream()
+                .map(cartItem -> new OrderItem(order, cartItem.getBook(),
+                        cartItem.getQuantity(), cartItem.getBook().getPrice()))
+                .collect(Collectors.toList());
     }
 
     private Order newOrder(User user, String shippingAddress, BigDecimal total) {
