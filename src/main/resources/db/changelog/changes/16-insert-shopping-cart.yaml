@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-shopping-cart-to-shopping-carts-table
+      author: AgroFix
+      preConditions:
+        - sqlCheck:
+            expectedResult: 1
+            sql: SELECT COUNT(*) FROM users WHERE email='william.turner@example.com'
+      changes:
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email='william.turner@example.com')
