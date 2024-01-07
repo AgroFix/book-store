@@ -32,7 +32,7 @@ public class OrderController {
     private final OrderService orderService;
     private final OrderItemService orderItemService;
 
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create a new order", description = "Create new order")

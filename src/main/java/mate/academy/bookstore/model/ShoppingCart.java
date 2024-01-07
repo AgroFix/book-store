@@ -31,7 +31,7 @@ public class ShoppingCart {
     @EqualsAndHashCode.Exclude
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-    @OneToMany(mappedBy = "shoppingCart")
+    @OneToMany(mappedBy = "shoppingCart", fetch = FetchType.LAZY)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<CartItem> cartItems;
