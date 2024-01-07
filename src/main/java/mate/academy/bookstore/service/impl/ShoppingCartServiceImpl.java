@@ -45,6 +45,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return shoppingCartMapper.toDto(shoppingCart);
     }
 
+    @Transactional
     @Override
     public ShoppingCartResponseDto getShoppingCart(Long userId) {
         ShoppingCart shoppingCart = findByUserId(userId);
