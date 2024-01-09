@@ -1,8 +1,10 @@
 package mate.academy.bookstore.dto.category;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class CategoryResponseDto {
     private Long id;
     private String name;

@@ -7,8 +7,10 @@ import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Set;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class BookRequestDto {
     @NotBlank
     @Size(max = 255, message = "Text limit 255 symbols")
