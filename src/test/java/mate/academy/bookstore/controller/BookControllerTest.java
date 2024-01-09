@@ -44,22 +44,31 @@ class BookControllerTest {
             .build();
 
         bookResponseDto = new BookResponseDto()
-                .setId(1L)
+                .setId(3L)
                 .setTitle("The Great Gatsby")
                 .setAuthor("F. Scott Fitzgerald")
                 .setIsbn("978-3-16-148410-0")
                 .setPrice(BigDecimal.valueOf(19.99));
+
         try (Connection connection = dataSource.getConnection()) {
             connection.setAutoCommit(true);
             ScriptUtils.executeSqlScript(
                     connection,
-                    new ClassPathResource("classpath:database/books/insert-books.sql")
+                    new ClassPathResource("database/books/delete-books.sql")
+            );
+        }
+
+        try (Connection connection = dataSource.getConnection()) {
+            connection.setAutoCommit(true);
+            ScriptUtils.executeSqlScript(
+                    connection,
+                    new ClassPathResource("database/books/insert-books.sql")
             );
         }
     }
 
     @Test
-    @WithMockUser(username = "user", roles = {"ROLE_USER"})
+    @WithMockUser(username = "user", roles = {"USER"})
     @DisplayName("Get all books")
     @Sql(scripts = "classpath:database/books/delete-books.sql",
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
