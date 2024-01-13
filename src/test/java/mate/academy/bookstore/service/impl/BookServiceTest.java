@@ -22,6 +22,7 @@ import org.testcontainers.shaded.org.apache.commons.lang3.builder.EqualsBuilder;
 class BookServiceTest {
     private static Book book;
     private static BookResponseDto bookResponseDto;
+
     @Mock
     private BookRepository bookRepository;
     @Mock

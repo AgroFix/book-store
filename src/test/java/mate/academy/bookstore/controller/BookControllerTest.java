@@ -6,7 +6,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.math.BigDecimal;
 import java.sql.Connection;
-import java.util.Arrays;
 import java.util.List;
 import javax.sql.DataSource;
 import lombok.SneakyThrows;
@@ -31,6 +30,7 @@ import org.testcontainers.shaded.org.apache.commons.lang3.builder.EqualsBuilder;
 class BookControllerTest {
     protected static MockMvc mockMvc;
     private static BookResponseDto bookResponseDto;
+
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -75,7 +75,7 @@ class BookControllerTest {
     void getAllBooks_ValidRequest_GetListValidBookResponseDto() throws Exception {
         MvcResult mvcResult = mockMvc.perform(get("/books")).andReturn();
         List<BookResponseDto> expected = List.of(bookResponseDto);
-        List<BookResponseDto> actual = Arrays.asList(objectMapper
+        List<BookResponseDto> actual = List.of(objectMapper
                 .readValue(mvcResult.getResponse().getContentAsString(),
                 BookResponseDto[].class));
         Assertions.assertEquals(1, actual.size());
