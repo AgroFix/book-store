@@ -28,16 +28,8 @@ class BookRepositoryTest {
                 .setPrice(BigDecimal.valueOf(19.99))
                 .setDescription("A novel about the American Dream.")
                 .setCoverImage("gatsby.jpg");
-        Book secondBook = new Book()
-                .setId(2L)
-                .setTitle("To Kill a Mockingbird")
-                .setAuthor("Harper Lee")
-                .setIsbn("978-0-06-112008-4")
-                .setPrice(BigDecimal.valueOf(24.99))
-                .setDescription("A classic of modern American literature.")
-                .setCoverImage("gatsby.jpg");
 
-        List<Book> books = List.of(firstBook, secondBook);
+        List<Book> books = List.of(firstBook);
         List<Book> expected = List.of(books.get(0));
         List<Book> actual = bookRepository.findAllByCategoryId(2L);
 
