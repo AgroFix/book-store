@@ -16,7 +16,7 @@ ___
 
 **Security** Spring Security
 
-**Testing and Documentation** JUnit, Mockito, Swagger, Test
+**Testing and Documentation** JUnit, Mockito, Swagger, TestContainers
 
 **Version Control** Git
 ___
@@ -55,6 +55,18 @@ ___
 1. Clone repository: clone from the console with the command: `git clone https://github.com/AgroFix/book-store.git`
 2. Check database setup: Customize the database settings in the application.properties file.
 3. Build and run project: `mvn spring-boot:run`
+___
+## 🐳 Running with Docker Compose 🐳
+If you prefer to run the Bookstore application in a Docker container using Docker Compose, follow these steps:
+
+1. Clone repository: Clone the repository from the console with the command: `git clone https://github.com/AgroFix/book-store.git`
+
+2. Check Docker Compose file: Ensure that the `docker-compose.yml` file in the root of the project is configured appropriately. You can customize environment variables, ports, and other settings in this file.
+
+3. Build and run the project: Execute the following commands in the project root directory:
+   ```bash
+   docker-compose build
+   docker-compose up
 ___
 ## ⌛ History of creating the project (Challenges faced) ⌛
 ### _Docker and Liquibase_
