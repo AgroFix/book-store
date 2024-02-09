@@ -27,6 +27,7 @@ ___
 
 + _`GET: /books` - endpoint for viewing all books_
 + _`GET: /books/{id}` - endpoint for searching a specific book_
++ _`GET: /books/search` - endpoint for searching a specific book by title or author_
 + _`POST: /books` - endpoint for administrators to adding a new book_
 + _`PUT: /books/{id}` - endpoint for administrators to updating a book_
 + _`DELETE: /books/{id}` - endpoint for administrators to deleting books_
