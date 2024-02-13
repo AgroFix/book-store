@@ -7,6 +7,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.dto.book.BookRequestDto;
 import mate.academy.bookstore.dto.book.BookResponseDto;
+import mate.academy.bookstore.dto.book.BookSearchParametersDto;
 import mate.academy.bookstore.service.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -63,5 +64,12 @@ public class BookController {
     public BookResponseDto update(@PathVariable Long id,
                                   @RequestBody @Valid BookRequestDto bookDto) {
         return bookService.updateBookById(id, bookDto);
+    }
+
+    @PreAuthorize("hasAnyAuthority('ROLE_USER', 'ROLE_ADMIN')")
+    @GetMapping("/search")
+    @Operation(summary = "Search for a book", description = "Search for a book")
+    public List<BookResponseDto> search(BookSearchParametersDto searchParameters) {
+        return bookService.search(searchParameters);
     }
 }

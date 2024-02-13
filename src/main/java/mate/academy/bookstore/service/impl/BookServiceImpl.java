@@ -6,12 +6,15 @@ import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.dto.book.BookDtoWithoutCategoryIds;
 import mate.academy.bookstore.dto.book.BookRequestDto;
 import mate.academy.bookstore.dto.book.BookResponseDto;
+import mate.academy.bookstore.dto.book.BookSearchParametersDto;
 import mate.academy.bookstore.exception.EntityNotFoundException;
 import mate.academy.bookstore.mapper.BookMapper;
 import mate.academy.bookstore.model.Book;
 import mate.academy.bookstore.repository.BookRepository;
+import mate.academy.bookstore.repository.specification.book.BookSpecificationBuilder;
 import mate.academy.bookstore.service.BookService;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -21,6 +24,7 @@ public class BookServiceImpl implements BookService {
     private static final String CANNOT_UPDATE_BOOK_BY_ID_MSG = "Can't update book by id: ";
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
+    private final BookSpecificationBuilder bookSpecificationBuilder;
 
     @Override
     public BookResponseDto createBook(BookRequestDto bookRequestDto) {
@@ -63,5 +67,11 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findAllByCategoryId(id).stream()
                 .map(bookMapper::toDtoWithoutCategories)
                 .toList();
+    }
+
+    @Override
+    public List<BookResponseDto> search(BookSearchParametersDto searchParameters) {
+        Specification<Book> bookSpecification = bookSpecificationBuilder.build(searchParameters);
+        return bookRepository.findAll(bookSpecification).stream().map(bookMapper::toDto).toList();
     }
 }
