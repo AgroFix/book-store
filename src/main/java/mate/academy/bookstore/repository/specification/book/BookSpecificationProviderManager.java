@@ -1,6 +1,7 @@
 package mate.academy.bookstore.repository.specification.book;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
 import mate.academy.bookstore.model.Book;
 import mate.academy.bookstore.repository.specification.SpecificationProvider;
@@ -20,6 +21,6 @@ public class BookSpecificationProviderManager implements SpecificationProviderMa
         return bookSpecificationProviders.stream()
                 .filter(provider -> provider.getKey().equals(key))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException(CANT_FIND_MSG + key));
+                .orElseThrow(() -> new NoSuchElementException(CANT_FIND_MSG + key));
     }
 }
